@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import AvatarImage from '../../public/assets/blog/authors/bartosz.jpeg';
+import AvatarImage from '../../public/assets/blog/authors/mcd.png';
 
 type Props = {
   large?: boolean;

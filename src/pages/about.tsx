@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import React, { useEffect, useMemo, useState } from 'react';
 
-import AvatarImage from '../../public/assets/blog/authors/bartosz.jpeg';
+import AvatarImage from '../../public/assets/blog/authors/mcd.png';
 import { Container } from '../components/Container';
 import { ExternalLink } from '../components/ExternalLink';
 import { PageTitle } from '../components/PageTitle';
@@ -54,7 +54,7 @@ export default function AboutMe() {
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
-            <PageTitle>Hi, I&apos;m Bartosz Jarocki.</PageTitle>
+            <PageTitle>Hi, I&apos;m Mark McDermott.</PageTitle>
             <div className="mt-6 text-base">{AboutExtended}</div>
             <div className="mt-6 flex gap-6">
               {SocialMedia.map((socialProfile) => (

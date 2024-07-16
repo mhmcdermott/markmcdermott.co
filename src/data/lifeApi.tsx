@@ -21,11 +21,11 @@ import YearProgressLogo from '../images/logos/yearprogress.svg';
 import Minimal from '../images/logos/minimal.svg';
 import { LinkedInIcon } from '../components/icons/LinkedInIcon';
 
-export const Name = 'Bartosz Jarocki';
+export const Name = 'Mark McDermott';
 
 export const About = (
   <>
-    {`I used to consider myself a software engineer, but the reality is that I simply enjoy creating things. If you'd like to get in touch,`}{' '}
+    {`Yoyoyo bitches I'm coding again & wow did you mofos overcomplicate websites!`}{' '}
     <ExternalLink href="mailto:bartosz@jarocki.me">send me an email.</ExternalLink>
   </>
 );
