@@ -14,28 +14,23 @@ export const NavigationItems = [
     type: 'internal',
   },
   {
-    name: 'Notes',
-    href: '/notes',
-    type: 'internal',
-  },
-  {
-    name: 'Creating',
-    href: '/creating',
-    type: 'internal',
-  },
-  {
-    name: 'Uses',
-    href: '/uses',
-    type: 'internal',
-  },
-  {
-    name: 'Resume',
-    href: 'https://cv.jarocki.me',
-    type: 'external',
-  },
-  {
     name: 'About',
     href: '/about',
+    type: 'internal',
+  },
+  {
+    name: 'Work',
+    href: '/work',
+    type: 'internal',
+  },
+  {
+    name: 'Media',
+    href: '/media',
+    type: 'internal',
+  },
+  {
+    name: 'Notes',
+    href: '/notes',
     type: 'internal',
   },
 ] as const;
