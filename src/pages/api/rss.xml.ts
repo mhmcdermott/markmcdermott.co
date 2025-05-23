@@ -6,15 +6,15 @@ import { notesApi } from '../../lib/notesApi';
 const rss: NextApiHandler = async (req, res) => {
   const feed = new RSS({
     title: 'Mark McDermott',
-    site_url: 'https://markmcdermott.co',
-    feed_url: 'https://markmcdermott.co/rss.xml',
+    site_url: 'https://www.markmcdermott.co',
+    feed_url: 'https://www.markmcdermott.co/rss.xml',
   });
 
   const allPosts = await notesApi.getNotes();
   allPosts.map((post) => {
     feed.item({
       title: post.title,
-      url: `https://markmcdermott.co/notes/${post.slug}`,
+      url: `https://www.markmcdermott.co/notes/${post.slug}`,
       date: post.publishedAt,
       description: post.description,
     });

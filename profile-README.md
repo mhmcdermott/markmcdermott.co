@@ -33,7 +33,7 @@ I'm passionate about building digital products that solve real-world problems. A
 
 ## Connect With Me
 
-- 🌐 [Personal Website](https://markmcdermott.co)
+- 🌐 [Personal Website](https://www.markmcdermott.co)
 - 💼 [LinkedIn](https://www.linkedin.com/in/mhmcdermott)
 - 🐦 [Twitter/X](https://twitter.com/mr_mcd)
 - 📸 [Instagram](https://www.instagram.com/mhmcdermott)

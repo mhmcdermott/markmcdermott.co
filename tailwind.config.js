@@ -10,8 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['Inter', ...fontFamily.sans],
+        mono: fontFamily.mono,
       },
       fontSize: {
         xs: ['0.8125rem', { lineHeight: '1.5rem' }],
