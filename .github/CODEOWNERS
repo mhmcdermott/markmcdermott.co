@@ -1,0 +1,18 @@
+# Code Owners
+# These owners will be the default owners for everything in the repo
+
+* @mhmcdermott
+
+# Frontend
+/src/components/ @mhmcdermott
+/src/pages/ @mhmcdermott
+/src/styles/ @mhmcdermott
+
+# Configuration
+/.github/ @mhmcdermott
+/*.config.* @mhmcdermott
+/*.json @mhmcdermott
+
+# Documentation
+/*.md @mhmcdermott
+/LICENSE @mhmcdermott
