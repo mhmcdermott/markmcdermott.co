@@ -5,8 +5,8 @@ import { Tool } from '../components/tools/Tool';
 import { ToolsSection } from '../components/tools/ToolsSection';
 import { Tools } from '../data/lifeApi';
 
-const seoTitle = 'Uses';
-const seoDescription = 'Software I use, gadgets I love, and other things I recommend.';
+const seoTitle = 'Mark McDermott : Media appearances';
+const seoDescription = 'Mark McDermott has appeared on a number of media platforms.';
 
 export default function Uses() {
   return (
@@ -14,7 +14,7 @@ export default function Uses() {
       <NextSeo
         title={seoTitle}
         description={seoDescription}
-        canonical={`${process.env.NEXT_PUBLIC_URL}/uses`}
+        canonical={`${process.env.NEXT_PUBLIC_URL}/media`}
         openGraph={{
           images: [
             {
@@ -24,9 +24,9 @@ export default function Uses() {
         }}
       />
       <PageLayout
-        title="Software I use, gadgets I love, and other things I recommend."
-        intro="Here's a big list of all of my favorite stuff."
-      >
+  title="Insights & industry perspectives"
+  intro="Sharing my thoughts on digital signage, workplace communications, and entrepreneurship through podcasts, interviews, speaking engagements, and video content."
+>
         <div className="space-y-20">
           {Object.entries(Tools).map(([title, tools]) => (
             <ToolsSection key={title} title={title}>
