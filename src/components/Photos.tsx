@@ -3,7 +3,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 
-import { travelImages } from '../images/travel';
+import { personalGallery } from '../images/travel';
+
+type TravelImage = {
+  img: StaticImageData;
+  title: string;
+  alt: string;
+};
 
 const possibleRotations = [1.3, -1.3, 1.3, -1.3, 1.3, -1.3];
 
@@ -48,7 +54,7 @@ const Photo = ({
             exit={{ opacity: 0 }}
             className="absolute inset-0 w-full bg-gradient-to-t from-black/75 via-black/0 flex items-end"
           >
-            <h3 className="px-3 py-2 font-mono text-xs font-bold">{title}</h3>
+            <h3 className="px-3 py-2 font-mono text-xs font-bold text-white">{title}</h3>
           </motion.div>
         )}
       </AnimatePresence>
@@ -60,7 +66,7 @@ export const Photos = () => {
   return (
     <div className="my-8">
       <div className="hide-scrollbar -my-4 flex gap-8 overflow-y-auto py-4 px-8">
-        {travelImages.map((travelImage, index) => (
+        {personalGallery.map((travelImage: TravelImage, index: number) => (
           <Photo
             key={travelImage.img.src}
             img={travelImage.img}

@@ -6,9 +6,9 @@ import { PageLayout } from '../../components/PageLayout';
 import { NotePreview } from '../../components/notes/NotePreview';
 import { Note, notesApi } from '../../lib/notesApi';
 
-const seoTitle = 'Notes';
+const seoTitle = 'Mark McDermott : Notes';
 const seoDescription =
-  'All of my thoughts on programming, building products, leadership, and more. Not structured.';
+  'From time to time I will write up some personal reflections on various topics and post them. An old school blog!';
 
 interface Props {
   notes: Note[];
@@ -26,10 +26,10 @@ export default function Notes({ notes, tags }: Props) {
           images: [{ url: `${process.env.NEXT_PUBLIC_URL}/api/og?title=${seoTitle}` }],
         }}
       />
-      <PageLayout
-        title="Notes on software, building products, and other stuff."
-        intro="All of my thoughts on programming, building products, leadership, travelling, whisky, and other random stuff. Not structured."
-      >
+        <PageLayout
+          title="Work, life, & everything in between"
+          intro="From time to time I will write up some personal reflections on various topics and post them. An old school blog!"
+        >
         <h3 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">Tags</h3>
         <div className="mt-4 flex max-w-xl flex-wrap gap-1 font-mono">
           {tags.map((tag) => (

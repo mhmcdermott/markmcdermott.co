@@ -12,11 +12,11 @@ interface Props {
 export const ProjectCard = ({ project }: Props) => {
   return (
     <Card className="h-full" key={project.title}>
-      <div className="relative z-10 flex h-16 w-16 p-2 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+      <div className="relative z-10 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image
           src={project.logo}
           alt={`Logo of ${project.title}`}
-          className="h-10 w-10 object-contain p-1"
+          className="h-full w-full object-cover"
           unoptimized
         />
       </div>
