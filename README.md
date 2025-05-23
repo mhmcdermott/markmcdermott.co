@@ -1,70 +1,114 @@
+# Mark McDermott - Personal Website
+
+My personal website built with Next.js, TypeScript, and Notion as a headless CMS.
+
 ![screenshot](screenshots/screenshot.png)
 
-# Bartosz Jarocki - Personal website built using Next.js and Notion as headless CMS
-
-This is my personal website built using
+## Tech Stack
 
 - [TypeScript](https://www.typescriptlang.org/)
-- [Next JS](https://nextjs.org/)
-- [Notion API](https://developers.notion.com/)
-- [Next Themes](https://github.com/pacocoursey/next-themes)
-- [Tailwind CSS](https://tailwindcss.com)
-- [NextSEO](https://github.com/garmeeh/next-seo)
-- [Vercel OG](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation)
+- [Next.js](https://nextjs.org/)
+- [Notion API](https://developers.notion.com/) - for blog content management
+- [Tailwind CSS](https://tailwindcss.com) - for styling
+- [Vercel OG](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation) - for dynamic social images
+- [Next Themes](https://github.com/pacocoursey/next-themes) - for dark mode
+- [Framer Motion](https://www.framer.com/motion/) - for animations
 
-## Running locally
+## Features
 
-To run application locally few environment variables have to be defined (in `.env.local`):
+- 📝 Blog powered by Notion CMS
+- 🌓 Dark/light mode
+- 📱 Fully responsive
+- 🚀 Fast page loads with static generation
+- 🔍 SEO optimized
+- 📊 Analytics with Vercel
+- 🖼️ Dynamic OG images
+- 📡 RSS feed
 
-1. `NEXT_PUBLIC_URL` - used to create absolute urls, for example canonical links and open graph images
-2. `NOTION_TOKEN` - used by Notion API client, nore info [here](https://developers.notion.com/docs/authorization)
-3. `NOTION_DATABASE_ID` - used to fetch notes/blog post list
+## Running Locally
 
-There's a certain data format of Notion database that's needed by application. When fetching the database content, application expects the following properties to be configured in the database:
+### Prerequisites
 
-1. `id`
-2. `created_time`
-3. `last_edited_time`
-4. `cover`
-5. `hashtags`
-6. `title`
-7. `description`
-8. `slug` - used as a notes slug for example in `/notes/hello-world` the slug would be `hello-world`
-9. `published` - used to filter unpublished notes from available notes list
-10. `publishedAt`
-11. `inProgress` - used to display `Work in progress` badge on in the notes list
+1. Node.js 18+ and npm
+2. A Notion account with a database for blog posts
+3. Environment variables (see below)
 
-Here's how the database in Notion should look like:
+### Environment Variables
 
-![notion](screenshots/notion.png)
-
-After defining environment variables and your Notion database, run the application
+Create a `.env.local` file with:
 
 ```bash
-git clone https://github.com/BartoszJarocki/web-jarocki-me
-cd web-jarocki-me
-yarn
-yarn dev
+NEXT_PUBLIC_URL=http://localhost:3000
+NOTION_TOKEN=your_notion_integration_token
+NOTION_DATABASE_ID=your_notion_database_id
 ```
 
-## OG images generation
+### Notion Database Setup
 
-Application generates Open Graph images automatically using lambda functions and Puppetter
+Your Notion database needs these properties:
+- `title` (title)
+- `description` (text)
+- `slug` (text) - for URL paths
+- `published` (checkbox)
+- `publishedAt` (date)
+- `hashtags` (multi-select)
+- `inProgress` (checkbox)
+- `cover` (files & media) - optional
 
-Main page example
-![main page OG image](https://jarocki.me/api/og?title=Bartosz%20Jarocki&description=A%20passionate%20software%20engineer%20with%20an%20eye%20for%20details%20based%20in%20Wroc%C5%82aw,%20Poland.)
+### Installation
 
-Blog post example
-![blog post OG image](https://jarocki.me/api/og?title=Monito,%20two%20weeks%20after%20launch&description=No%20audience,%20just%20Product%20Hunt%20and%20Hacker%20News%20launch.%20How%20did%20it%20go?)
+```bash
+# Clone the repository
+git clone https://github.com/mhmcdermott/markmcdermott.co.git
+cd markmcdermott.co
 
-## Credits
+# Install dependencies
+npm install
 
-Design heavily inspired by [Tailwind UI Spotlight template](https://tailwindui.com/templates/spotlight)
+# Run development server
+npm run dev
 
-## Deploy to Vercel
+# Build for production
+npm run build
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBartoszJarocki%2Fweb-jarocki-me)
+# Start production server
+npm start
+```
+
+## Development Commands
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run typecheck    # Run TypeScript type checking
+npm run format       # Format code with Prettier
+```
+
+## Project Structure
+
+```
+├── public/           # Static assets
+├── src/
+│   ├── components/   # React components
+│   ├── data/         # Static data (bio, work history, etc.)
+│   ├── images/       # Image assets
+│   ├── lib/          # Utility functions and APIs
+│   ├── pages/        # Next.js pages
+│   └── styles/       # Global styles
+├── .github/          # GitHub Actions workflows
+└── CLAUDE.md         # AI assistant context
+```
+
+## Deployment
+
+The site is automatically deployed to Vercel on push to the `master` branch.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE)
+
+## Acknowledgments
+
+This website was originally forked from [Bartosz Jarocki's personal website](https://github.com/BartoszJarocki/jarocki.me) and heavily customized.
