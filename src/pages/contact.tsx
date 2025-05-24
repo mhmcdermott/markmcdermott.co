@@ -75,8 +75,8 @@ export default function Contact() {
         }}
       />
       <PageLayout
-        title="Let's connect"
-        intro="Whether you're interested in digital signage solutions, speaking engagements, or exploring collaboration opportunities, I'd love to hear from you."
+        title="Let&apos;s connect"
+        intro="Whether you&apos;re interested in digital signage solutions, speaking engagements, or exploring collaboration opportunities, I&apos;d love to hear from you."
       >
         <div className="mx-auto max-w-2xl space-y-16">
           <form onSubmit={handleSubmit} className="space-y-8">
@@ -136,7 +136,7 @@ export default function Contact() {
               
               {submitStatus === 'success' && (
                 <p className="mt-2 text-sm text-green-600 dark:text-green-400">
-                  Thank you for your message! I'll get back to you soon.
+                  Thank you for your message! I&apos;ll get back to you soon.
                 </p>
               )}
               
