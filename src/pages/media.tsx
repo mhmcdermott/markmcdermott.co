@@ -1,14 +1,14 @@
 import { NextSeo } from 'next-seo';
 
 import { PageLayout } from '../components/PageLayout';
-import { Tool } from '../components/tools/Tool';
-import { ToolsSection } from '../components/tools/ToolsSection';
-import { Tools } from '../data/lifeApi';
+import { MediaItem } from '../components/media/MediaItem';
+import { MediaSection } from '../components/media/MediaSection';
+import { MediaAppearances } from '../data/lifeApi';
 
 const seoTitle = 'Mark McDermott : Media appearances';
 const seoDescription = 'Mark McDermott has appeared on a number of media platforms.';
 
-export default function Uses() {
+export default function Media() {
   return (
     <>
       <NextSeo
@@ -28,14 +28,14 @@ export default function Uses() {
   intro="Sharing my thoughts on digital signage, workplace communications, and entrepreneurship through podcasts, interviews, speaking engagements, and video content."
 >
         <div className="space-y-20">
-          {Object.entries(Tools).map(([title, tools]) => (
-            <ToolsSection key={title} title={title}>
-              {tools.map((tool) => (
-                <Tool key={tool.title} title={tool.title} href={tool.href}>
-                  {tool.description}
-                </Tool>
+          {Object.entries(MediaAppearances).map(([category, items]) => (
+            <MediaSection key={category} title={category}>
+              {items.map((item) => (
+                <MediaItem key={item.title} title={item.title} href={item.href}>
+                  {item.description}
+                </MediaItem>
               ))}
-            </ToolsSection>
+            </MediaSection>
           ))}
         </div>
       </PageLayout>

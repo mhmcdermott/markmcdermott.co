@@ -1,6 +1,6 @@
 import { Card } from '../Card';
 
-export const Tool = ({
+export const MediaItem = ({
   title,
   href,
   children,

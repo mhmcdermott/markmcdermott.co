@@ -6,16 +6,16 @@ import { ProjectCard } from '../components/ProjectCard';
 import { MyCurrentProjects } from '../data/lifeApi';
 import { ANIMATION_FROM_PROPS, ANIMATION_TO_PROPS } from '../lib/animation';
 
-const seoTitle = 'Mark McDermott : Work History';
-const seoDescription = "From digtial agencies and IT consulting to building global SaaS platforms.";
+const seoTitle = 'Mark McDermott : Work history';
+const seoDescription = "From digital agencies and IT consulting to building global SaaS platforms.";
 
-export default function Creating() {
+export default function Work() {
   return (
     <>
       <NextSeo
         title={seoTitle}
         description={seoDescription}
-        canonical={`${process.env.NEXT_PUBLIC_URL}/creating`}
+        canonical={`${process.env.NEXT_PUBLIC_URL}/work`}
         openGraph={{
           images: [
             {
@@ -26,7 +26,7 @@ export default function Creating() {
       />
       <PageLayout
   title="Digital ventures & career milestones"
-  intro="From digtial agencies and IT consulting to building global SaaS platforms, these are the ventures and roles that have shaped my journey in digital product development and entrepreneurship."
+  intro="From digital agencies and IT consulting to building global SaaS platforms, these are the ventures and roles that have shaped my journey in digital product development and entrepreneurship."
 >
         
         <ul

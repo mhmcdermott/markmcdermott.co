@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-export const ToolsSection = ({ title, children }: { title: string; children: React.ReactNode }) => {
+export const MediaSection = ({ title, children }: { title: string; children: React.ReactNode }) => {
   let id = useId();
 
   return (

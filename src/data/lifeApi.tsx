@@ -199,7 +199,7 @@ export const Quotes = [
   },
 ] as const;
 
-export const Tools = {
+export const MediaAppearances = {
   "Industry Podcasts": [
     {
       title: "Sixteen:Nine Podcast - First Interview with Mark McDermott",
