@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 
 import { PageLayout } from '../components/PageLayout';
 import { ProjectCard } from '../components/ProjectCard';
-import { MyCurrentProjects } from '../data/lifeApi';
+import { WorkExperience } from '../data/lifeApi';
 import { ANIMATION_FROM_PROPS, ANIMATION_TO_PROPS } from '../lib/animation';
 
 const seoTitle = 'Mark McDermott : Work history';
@@ -33,14 +33,14 @@ export default function Work() {
           role="list"
           className="mt-12 grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {MyCurrentProjects.map((project) => (
+          {WorkExperience.map((experience) => (
             <motion.li
-              key={project.title}
+              key={experience.title}
               initial={ANIMATION_FROM_PROPS}
               whileInView={ANIMATION_TO_PROPS}
               viewport={{ once: true }}
             >
-              <ProjectCard project={project} />
+              <ProjectCard project={experience} />
             </motion.li>
           ))}
         </ul>

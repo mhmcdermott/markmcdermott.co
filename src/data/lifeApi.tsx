@@ -29,7 +29,7 @@ export type Project = {
   };
 };
 
-export const MyCurrentProjects: Project[] = [
+export const WorkExperience: Project[] = [
   {
     title: 'ScreenCloud',
     techStack: ['2015-Present', 'Digital Signage', 'SaaS', 'Enterprise Software'],
