@@ -1,4 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 type Data = {
   message: string;
@@ -33,13 +36,7 @@ export default async function handler(
   }
 
   try {
-    // Option 1: Send to a webhook (e.g., Discord, Slack, or Zapier)
-    // This is the simplest approach without additional services
-    
-    // Option 2: Use Vercel's built-in email service (requires configuration)
-    // You can use @vercel/email or integrate with SendGrid, Resend, etc.
-    
-    // For now, let's log the submission (you can see these in Vercel Functions logs)
+    // Log the submission
     console.log('Contact form submission:', {
       name,
       email,
@@ -47,34 +44,34 @@ export default async function handler(
       timestamp: new Date().toISOString()
     });
 
-    // If you have a Discord webhook, uncomment and add your webhook URL:
-    /*
-    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-    if (webhookUrl) {
-      await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          content: `New contact form submission:\n**Name:** ${name}\n**Email:** ${email}\n**Message:** ${message}`
-        })
-      });
-    }
-    */
+    // Send email using Resend
+    const data = await resend.emails.send({
+      from: 'Contact Form <onboarding@resend.dev>', // Use this until you verify your domain
+      to: ['mark@markmcdermott.me.uk'],
+      subject: `Contact form submission from ${name}`,
+      text: `You have a new contact form submission:
 
-    // If you want to use Resend (recommended for Vercel):
-    /*
-    import { Resend } from 'resend';
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    
-    await resend.emails.send({
-      from: 'contact@markmcdermott.co',
-      to: 'mark@markmcdermott.me.uk',
-      subject: `Contact form: ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+
+---
+Sent from markmcdermott.co contact form`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        <hr>
+        <p style="color: #666; font-size: 12px;">Sent from markmcdermott.co contact form</p>
+      `,
+      reply_to: email,
     });
-    */
+
+    console.log('Email sent successfully:', data);
 
     return res.status(200).json({ 
       message: 'Thank you for your message! I will get back to you soon.' 
