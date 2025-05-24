@@ -29,12 +29,15 @@ export default function Home({ latestNotes }: Props) {
         openGraph={{
           images: [
             {
-              url: `${process.env.NEXT_PUBLIC_URL}/api/og?title=${seoTitle}&description=${seoDescription}`,
+              url: `${process.env.NEXT_PUBLIC_URL}/api/og?${new URLSearchParams({
+                title: seoTitle,
+                description: seoDescription,
+              }).toString()}`,
             },
           ],
         }}
       />
-      <Container className="mt-9">
+      <Container className="mt-4 sm:mt-9">
         <div className="max-w-2xl">
           <PageTitle>{Name}</PageTitle>
           <p className="mt-6 max-w-2xl text-base text-balance">{About}</p>
@@ -50,7 +53,9 @@ export default function Home({ latestNotes }: Props) {
           </div>
         </div>
       </Container>
-      <Photos />
+      <div className="mt-16">
+        <Photos />
+      </div>
       <Container className="mt-12">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">

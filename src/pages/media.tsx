@@ -18,7 +18,10 @@ export default function Media() {
         openGraph={{
           images: [
             {
-              url: `${process.env.NEXT_PUBLIC_URL}/api/og?title=${seoTitle}&description=${seoDescription}`,
+              url: `${process.env.NEXT_PUBLIC_URL}/api/og?${new URLSearchParams({
+                title: seoTitle,
+                description: seoDescription,
+              }).toString()}`,
             },
           ],
         }}

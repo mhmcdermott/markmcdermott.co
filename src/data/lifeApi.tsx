@@ -100,7 +100,7 @@ export const Work = [
     title: 'CEO & Co-Founder',
     logo: ScreenCloudLogo,
     start: '2015',
-    end: 'Present',
+    end: 'Now',
   },
   {
     company: 'Codegent',

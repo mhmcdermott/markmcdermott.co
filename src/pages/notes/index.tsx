@@ -23,7 +23,12 @@ export default function Notes({ notes, tags }: Props) {
         description={seoDescription}
         canonical={`${process.env.NEXT_PUBLIC_URL}/notes`}
         openGraph={{
-          images: [{ url: `${process.env.NEXT_PUBLIC_URL}/api/og?title=${seoTitle}` }],
+          images: [{ 
+            url: `${process.env.NEXT_PUBLIC_URL}/api/og?${new URLSearchParams({
+              title: seoTitle,
+              description: seoDescription,
+            }).toString()}` 
+          }],
         }}
       />
         <PageLayout

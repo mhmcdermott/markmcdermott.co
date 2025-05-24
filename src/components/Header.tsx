@@ -122,7 +122,7 @@ export const Header = () => {
           <>
             <div
               ref={avatarRef}
-              className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"
+              className="order-last mt-[calc(theme(spacing.8)-theme(spacing.3))] sm:mt-[calc(theme(spacing.16)-theme(spacing.3))]"
             />
             <Container
               className="top-0 order-last -mb-3 pt-3"

@@ -6,25 +6,28 @@ import { PageLayout } from '../../components/PageLayout';
 import { NotePreview } from '../../components/notes/NotePreview';
 import { Note, notesApi } from '../../lib/notesApi';
 
-const seoTitle = 'Tags';
-const seoDescription = 'All of my blog posts tagged with ';
-
 interface Props {
   tag: string;
   relatedNotes: Note[];
 }
 
 export default function Tag({ tag, relatedNotes }: Props) {
+  const seoTitle = `Posts tagged with #${tag}`;
+  const seoDescription = `All of my blog posts tagged with #${tag}`;
+  
   return (
     <>
       <NextSeo
         title={seoTitle}
-        description={`${seoDescription}#${tag}}`}
+        description={seoDescription}
         canonical={`${process.env.NEXT_PUBLIC_URL}/tags/${tag}`}
         openGraph={{
           images: [
             {
-              url: `${process.env.NEXT_PUBLIC_URL}/api/og?title=${seoTitle}&description=${seoDescription}`,
+              url: `${process.env.NEXT_PUBLIC_URL}/api/og?${new URLSearchParams({
+                title: seoTitle,
+                description: seoDescription,
+              }).toString()}`,
             },
           ],
         }}

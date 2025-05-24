@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 
-import { personalGallery } from '../images/travel';
+import { lifeGallery } from '../images/life'; // Life moments and memories
 
-type TravelImage = {
+type LifeImage = {
   img: StaticImageData;
   title: string;
   alt: string;
@@ -66,12 +66,12 @@ export const Photos = () => {
   return (
     <div className="my-8">
       <div className="hide-scrollbar -my-4 flex gap-8 overflow-y-auto py-4 px-8">
-        {personalGallery.map((travelImage: TravelImage, index: number) => (
+        {lifeGallery.map((lifeImage: LifeImage, index: number) => (
           <Photo
-            key={travelImage.img.src}
-            img={travelImage.img}
-            title={travelImage.title}
-            alt={travelImage.alt}
+            key={lifeImage.img.src}
+            img={lifeImage.img}
+            title={lifeImage.title}
+            alt={lifeImage.alt}
             idx={index}
           />
         ))}
