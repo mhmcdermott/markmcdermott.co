@@ -66,7 +66,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           },
           {
             name: 'theme-color',
-            content: '#FB2576',
+            content: '#ffffff',
           },
         ]}
       />
