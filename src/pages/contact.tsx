@@ -30,23 +30,34 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Here you would typically send the form data to your backend
-    // For now, we'll use a mailto link as a fallback
-    const mailtoLink = `mailto:mark@markmcdermott.me.uk?subject=Contact from ${formData.name}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    
-    // Simulate form submission
-    setTimeout(() => {
-      window.location.href = mailtoLink;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({ name: '', email: '', message: '' });
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        setSubmitStatus('error');
+        console.error('Form submission error:', data.error);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      // Reset form after a delay
-      setTimeout(() => {
-        setFormData({ name: '', email: '', message: '' });
-        setSubmitStatus('idle');
-      }, 3000);
-    }, 500);
+    }
   };
 
   return (
