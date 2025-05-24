@@ -46,7 +46,7 @@ export default async function handler(
 
     // Send email using Resend
     const data = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // Use this until you verify your domain
+      from: 'Contact Form <noreply@contact.markmcdermott.me.uk>',
       to: ['mark@markmcdermott.me.uk'],
       subject: `Contact form submission from ${name}`,
       text: `You have a new contact form submission:
