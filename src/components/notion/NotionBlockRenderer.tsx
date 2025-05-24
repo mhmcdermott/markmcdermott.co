@@ -169,7 +169,13 @@ const NotionText = ({ textItems }: { textItems: TextRichTextItemResponse[] }) =>
             })}
             style={color !== 'default' ? { color } : {}}
           >
-            {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
+            {text.link ? (
+              text.link.url.startsWith('http://') || text.link.url.startsWith('https://') ? (
+                <a href={text.link.url} target="_blank" rel="noopener noreferrer">{text.content}</a>
+              ) : (
+                <Link href={text.link.url}>{text.content}</Link>
+              )
+            ) : text.content}
           </span>
         );
       })}
