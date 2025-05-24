@@ -20,10 +20,13 @@ My personal website built with Next.js, TypeScript, and Notion as a headless CMS
 - 🌓 Dark/light mode
 - 📱 Fully responsive
 - 🚀 Fast page loads with static generation
-- 🔍 SEO optimized
+- 🔍 SEO optimized with comprehensive meta tags
 - 📊 Analytics with Vercel
-- 🖼️ Dynamic OG images
+- 🖼️ Dynamic OG images with fallback support
+- 🐦 Twitter card integration
 - 📡 RSS feed
+- 🎨 Visual category icons for media sections
+- 📧 Contact form with email delivery via Resend
 
 ## Running Locally
 
@@ -41,6 +44,7 @@ Create a `.env.local` file with:
 NEXT_PUBLIC_URL=http://localhost:3000
 NOTION_TOKEN=your_notion_integration_token
 NOTION_DATABASE_ID=your_notion_database_id
+RESEND_API_KEY=your_resend_api_key # For contact form emails
 ```
 
 ### Notion Database Setup
@@ -90,10 +94,14 @@ npm run format       # Format code with Prettier
 
 ```
 ├── public/           # Static assets
+│   └── og-default.svg # Fallback OG image
 ├── src/
 │   ├── components/   # React components
 │   ├── data/         # Static data (bio, work history, etc.)
 │   ├── images/       # Image assets
+│   │   ├── life/     # Personal photos
+│   │   ├── logos/    # Company logos
+│   │   └── media/    # Media category icons
 │   ├── lib/          # Utility functions and APIs
 │   ├── pages/        # Next.js pages
 │   └── styles/       # Global styles
