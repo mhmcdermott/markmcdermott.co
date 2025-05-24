@@ -55,7 +55,7 @@ export default function AboutMe() {
               <br /><br />
               From offices to factories, thousands of screens globally aren&apos;t being used to their full potential. With digital signs, companies have the opportunity to communicate to the right audience, at the right time and in the right location using screens that they already own.
               <br /><br />
-              Founded in 2015 and with offices in LA & Charlotte, London & Belfast, and Bangkok, we&apos;re helping customers unlock the power of their digital signage with screens that communicate. ScreenCloud was born out of a prototype in Codegent Labs in early 2014 as we were frustrated by how hard it was to push content to the screens in our office – a problem shared by most of our corporate clients as well.
+              Founded in 2015 and with offices in LA & Charlotte, London & Belfast, and Bangkok, we&apos;re helping customers unlock the power of their digital signage with screens that communicate. ScreenCloud was born out of a prototype in Codegent Labs in early 2014 as we were frustrated by how hard it was to push content to the screens in our office – a problem shared by most of our corporate clients.
               <br /><br />
               In April 2025, we secured strategic investment from European tech investor <ExternalLink href="https://tenzing.pe">Tenzing</ExternalLink> to accelerate our global expansion and explore M&A opportunities in the digital signage space.
               <br /><br />
@@ -91,7 +91,7 @@ export default function AboutMe() {
               <Section.Content>
                 <ul className="mt-1 list-disc list-inside">
                   <li>Goldman Sachs 10,000 Small Businesses Programme (2014)</li>
-                  <li>University of Exeter - Bachelor of Arts in History & Society (2000)</li>
+                  <li>University of Exeter - BA in History & Society (2000)</li>
                   <li>Dulwich College - Secondary Education (1997)</li>
                 </ul>
               </Section.Content>

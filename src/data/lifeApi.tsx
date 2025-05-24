@@ -32,7 +32,7 @@ export type Project = {
 export const WorkExperience: Project[] = [
   {
     title: 'ScreenCloud',
-    techStack: ['2015-Present', 'Digital Signage', 'SaaS', 'Enterprise Software'],
+    techStack: ['2015-Now', 'Digital Signage', 'SaaS', 'Enterprise Software'],
     description: 'Global digital signage platform empowering 10,000+ businesses to share meaningful content through screens.',
     logo: ScreenCloudLogo,
     link: {
@@ -43,7 +43,7 @@ export const WorkExperience: Project[] = [
   {
     title: 'Codegent',
     techStack: ['2003-2021', 'Digital Product Studio', 'Web Development', 'Mobile Apps'],
-    description: 'Independent digital product studio that incubated several ventures, with a mobile apps portfolio achieving over 20 million downloads.',
+    description: 'Independent digital product studio that incubated several ventures, with mobile apps portfolio achieving over 20 million downloads.',
     logo: CodegentLogo,
     link: {
       label: 'codegent.com',
