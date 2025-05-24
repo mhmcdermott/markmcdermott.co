@@ -33,6 +33,11 @@ export const NavigationItems = [
     href: '/notes',
     type: 'internal',
   },
+  {
+    name: 'Contact',
+    href: '/contact',
+    type: 'internal',
+  },
 ] as const;
 
 export const NavLink = ({ href, children }: React.PropsWithChildren<{ href: string }>) => {
