@@ -246,7 +246,7 @@ export const MediaAppearances = {
     {
       title: "Boom Town: A SaaS Podcast - Global Expansion and Digital Workplaces",
       description:
-        "In-depth conversation about ScreenCloud's global expansion strategy, focusing on how digital signage is transforming workplace communications worldwide. Mark shares insights on leveraging regional differences in communication culture to achieve growth in diverse markets.",
+        "In-depth conversation about ScreenCloud's global expansion strategy, focusing on how digital signage is transforming workplace communications worldwide. I share insights on leveraging regional differences in communication culture to achieve growth in diverse markets.",
       href: "https://www.boomplay.com/episode/8834525",
     },
   ],
@@ -278,7 +278,7 @@ export const MediaAppearances = {
     {
       title: "How to Win - Making the Pivot Upmarket with ScreenCloud",
       description:
-        "Discussion with Peep Laja about ScreenCloud's strategic move upmarket, differentiating from low-cost competitors by focusing on enterprise business. Mark explains how this pivot expanded growth opportunities and shares lessons learned about product positioning and customer education.",
+        "Discussion with Peep Laja about ScreenCloud's strategic move upmarket, differentiating from low-cost competitors by focusing on enterprise business. I explain how this pivot expanded growth opportunities and shares lessons learned about product positioning and customer education.",
       href: "https://howtowin.transistor.fm/episodes/making-the-pivot-upmarket-with-screencloud-s-mark-mcdermott",
     },
     {
@@ -344,7 +344,7 @@ export const MediaAppearances = {
     {
       title: "The Cadence Operating Philosophy",
       description:
-        "Discussion of how we implemented the Cadence operating philosophy (coined by David Sacks of Yammer/PayPal) at ScreenCloud to solve organizational challenges as we scaled the business.",
+        "Discussion of how we implemented the Cadence operating philosophy (coined by David Sacks of Yammer/PayPal) at ScreenCloud to solve organisational challenges as we scaled the business.",
       href: "https://screencloud.com/behind-the-screens/implementing-company-cadence",
     },
     {
@@ -356,7 +356,7 @@ export const MediaAppearances = {
     {
       title: "Unveiling ScreenCloud Dashboards",
       description:
-        "In this episode, David and I deep dive into how ScreenCloud dashboards evolved and the upcoming launch of our new approach for sharing dashboards securely with anybody in your organization.",
+        "In this episode, David and I deep dive into how ScreenCloud dashboards evolved and the upcoming launch of our new approach for sharing dashboards securely with anybody in your organisation.",
       href: "https://screencloud.com/behind-the-screens/ep-60-launching-screencloud-dashboards",
     },
     {
