@@ -68,7 +68,7 @@ Sent from markmcdermott.co contact form`,
         <hr>
         <p style="color: #666; font-size: 12px;">Sent from markmcdermott.co contact form</p>
       `,
-      reply_to: email,
+      replyTo: email,
     });
 
     console.log('Email sent successfully:', data);
