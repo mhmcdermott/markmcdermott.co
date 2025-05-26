@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
+import Image from 'next/image';
 
 import { formatDate } from '../../lib/date';
 import { Container } from '../Container';
@@ -13,6 +14,8 @@ interface Props {
     title: string;
     description: string;
     date: string;
+    readingTime?: number;
+    coverImage?: string | null;
   };
   previousPathname?: string;
 }
@@ -39,14 +42,31 @@ export const NoteLayout = ({ children, meta, previousPathname }: Props) => {
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
                 {meta.title}
               </h1>
-              <time
-                dateTime={meta.date}
-                className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
-              >
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                <span className="ml-3">{formatDate(meta.date)}</span>
-              </time>
+              <div className="order-first flex items-center gap-x-3 text-base text-zinc-400 dark:text-zinc-500">
+                <time dateTime={meta.date} className="flex items-center">
+                  <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+                  <span className="ml-3">{formatDate(meta.date)}</span>
+                </time>
+                {meta.readingTime && (
+                  <>
+                    <span className="text-zinc-300 dark:text-zinc-600">•</span>
+                    <span>{meta.readingTime} min read</span>
+                  </>
+                )}
+              </div>
             </header>
+            {meta.coverImage && (
+              <div className="relative w-full h-64 sm:h-80 md:h-96 mt-8 mb-8 overflow-hidden rounded-xl">
+                <Image
+                  src={meta.coverImage}
+                  alt={meta.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                  priority
+                />
+              </div>
+            )}
             <Prose className="mt-8">{children}</Prose>
           </article>
         </div>

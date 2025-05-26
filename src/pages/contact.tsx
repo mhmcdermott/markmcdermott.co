@@ -5,7 +5,7 @@ import { PageLayout } from '../components/PageLayout';
 import { SocialLink } from '../components/SocialLink';
 import { SocialMedia } from '../data/lifeApi';
 
-const seoTitle = 'Mark McDermott : Contact';
+const seoTitle = 'Contact';
 const seoDescription = 'Get in touch with Mark McDermott for business inquiries, speaking engagements, or collaboration opportunities.';
 
 export default function Contact() {

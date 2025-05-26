@@ -20,6 +20,13 @@ export type Note = {
   isPublished: boolean;
   publishedAt: string;
   inProgress: boolean;
+  // New fields from enhanced database
+  seoTitle?: string;
+  metaDescription?: string;
+  excerpt?: string;
+  readingTime?: number;
+  wordCount?: number;
+  contentStatus?: 'Draft' | 'In Review' | 'Ready to Publish' | 'Published' | 'Archived';
 };
 
 const noop = async (block: BlockObjectResponse) => block;
@@ -143,31 +150,81 @@ class NotesApi {
           throw new Error('Notion page is not a full page');
         }
 
-        return {
+        
+        const note: Note = {
           id: page.id,
           createdAt: page.created_time,
           lastEditedAt: page.last_edited_time,
-          coverImage: page.cover?.type === 'external' ? page.cover.external.url : null,
+          coverImage: (() => {
+            // Check page-level cover first
+            if (page.cover) {
+              if (page.cover.type === 'external') return page.cover.external.url;
+              if (page.cover.type === 'file') return page.cover.file.url;
+            }
+            
+            // Check if cover is a property
+            if (page.properties.cover && 'files' in page.properties.cover && page.properties.cover.files.length > 0) {
+              const file = page.properties.cover.files[0];
+              if (file.type === 'file' && file.file) {
+                return file.file.url;
+              }
+              if (file.type === 'external' && file.external) {
+                return file.external.url;
+              }
+            }
+            
+            return null;
+          })(),
           tags:
             'multi_select' in page.properties.hashtags
               ? page.properties.hashtags.multi_select.map((tag) => tag.name)
               : [],
-          title: 'title' in page.properties.title ? page.properties.title.title[0].plain_text : '',
-          description:
-            'rich_text' in page.properties.description
-              ? page.properties.description.rich_text[0].plain_text
-              : '',
-          slug:
-            'rich_text' in page.properties.slug ? page.properties.slug.rich_text[0].plain_text : '',
-          isPublished:
-            'checkbox' in page.properties.published ? page.properties.published.checkbox : false,
-          publishedAt:
-            'date' in page.properties.publishedAt ? page.properties.publishedAt.date!.start : '',
-          inProgress:
-            'checkbox' in page.properties.inProgress ? page.properties.inProgress.checkbox : false,
+          title: page.properties.title && 'title' in page.properties.title 
+            ? page.properties.title.title[0]?.plain_text || '' 
+            : '',
+          description: page.properties.description && 'rich_text' in page.properties.description
+            ? page.properties.description.rich_text[0]?.plain_text || ''
+            : '',
+          slug: page.properties.slug && 'rich_text' in page.properties.slug 
+            ? page.properties.slug.rich_text[0]?.plain_text || '' 
+            : '',
+          isPublished: false, // Will be set based on contentStatus below
+          publishedAt: page.properties.publishedAt && 'date' in page.properties.publishedAt 
+            ? page.properties.publishedAt.date?.start || '' 
+            : '',
+          inProgress: page.properties.inProgress && 'checkbox' in page.properties.inProgress 
+            ? page.properties.inProgress.checkbox 
+            : false,
         };
+
+        // Add new fields if they exist
+        if (page.properties.seoTitle && 'rich_text' in page.properties.seoTitle && page.properties.seoTitle.rich_text[0]) {
+          note.seoTitle = page.properties.seoTitle.rich_text[0].plain_text;
+        }
+        if (page.properties.metaDescription && 'rich_text' in page.properties.metaDescription && page.properties.metaDescription.rich_text[0]) {
+          note.metaDescription = page.properties.metaDescription.rich_text[0].plain_text;
+        }
+        if (page.properties.excerpt && 'rich_text' in page.properties.excerpt && page.properties.excerpt.rich_text[0]) {
+          note.excerpt = page.properties.excerpt.rich_text[0].plain_text;
+        }
+        if (page.properties.readingTime && 'number' in page.properties.readingTime && page.properties.readingTime.number !== null) {
+          note.readingTime = page.properties.readingTime.number;
+        }
+        if (page.properties.wordCount && 'number' in page.properties.wordCount && page.properties.wordCount.number !== null) {
+          note.wordCount = page.properties.wordCount.number;
+        }
+        if (page.properties.contentStatus && 'select' in page.properties.contentStatus && page.properties.contentStatus.select) {
+          note.contentStatus = page.properties.contentStatus.select.name as Note['contentStatus'];
+          // Set isPublished based on contentStatus
+          note.isPublished = note.contentStatus === 'Published';
+        }
+
+        return note;
       })
-      .filter((post) => post.isPublished);
+      .filter((post) => {
+        // Only show posts with contentStatus = 'Published'
+        return post.contentStatus === 'Published' || post.isPublished;
+      });
   };
 
   private getPageContent = async (pageId: string) => {

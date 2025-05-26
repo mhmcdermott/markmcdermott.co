@@ -14,14 +14,20 @@ type Props = {
 };
 
 export default function Note({
-  note: { title, description, createdAt, slug },
+  note,
   noteContent,
   previousPathname,
 }: Props & { previousPathname: string }) {
+  const { title, description, createdAt, slug, seoTitle, metaDescription, excerpt, readingTime, wordCount } = note;
   const url = `${process.env.NEXT_PUBLIC_URL}/notes/${slug}`;
+  
+  // Use SEO-specific fields if available, fallback to regular fields
+  const pageTitle = seoTitle || title;
+  const pageDescription = metaDescription || description;
+  
   const openGraphImageUrl = `${process.env.NEXT_PUBLIC_URL}/api/og?${new URLSearchParams({
-    title,
-    description,
+    title: pageTitle,
+    description: pageDescription,
   }).toString()}`;
 
   useEffect(() => {
@@ -31,10 +37,12 @@ export default function Note({
   return (
     <>
       <NextSeo
-        title={title}
-        description={description}
+        title={pageTitle}
+        description={pageDescription}
         canonical={url}
         openGraph={{
+          title: pageTitle,
+          description: excerpt || pageDescription,
           images: [{ url: openGraphImageUrl }],
         }}
       />
@@ -44,10 +52,10 @@ export default function Note({
         title={title}
         datePublished={createdAt}
         authorName="Mark McDermott"
-        description={description}
+        description={pageDescription}
       />
       <NoteLayout
-        meta={{ title, description, date: createdAt }}
+        meta={{ title, description, date: createdAt, readingTime, coverImage: note.coverImage }}
         previousPathname={previousPathname}
       >
         <div className="pb-32">

@@ -6,7 +6,7 @@ import { PageLayout } from '../../components/PageLayout';
 import { NotePreview } from '../../components/notes/NotePreview';
 import { Note, notesApi } from '../../lib/notesApi';
 
-const seoTitle = 'Mark McDermott : Notes';
+const seoTitle = 'Notes';
 const seoDescription =
   'From time to time I will write up some personal reflections on various topics and post them. An old school blog!';
 
@@ -47,7 +47,7 @@ export default function Notes({ notes, tags }: Props) {
         <div className="mt-24 md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
             {notes.map((note) => (
-              <NotePreview key={note.slug} note={note} />
+              <NotePreview key={note.slug} note={note} showCoverImage />
             ))}
           </div>
         </div>

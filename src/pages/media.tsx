@@ -5,7 +5,7 @@ import { MediaItem } from '../components/media/MediaItem';
 import { MediaSection } from '../components/media/MediaSection';
 import { MediaAppearances } from '../data/lifeApi';
 
-const seoTitle = 'Mark McDermott : Media appearances';
+const seoTitle = 'Media appearances';
 const seoDescription = 'Mark McDermott has appeared on a number of media platforms.';
 
 export default function Media() {

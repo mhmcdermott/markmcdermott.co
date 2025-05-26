@@ -6,7 +6,7 @@ import { ProjectCard } from '../components/ProjectCard';
 import { WorkExperience } from '../data/lifeApi';
 import { ANIMATION_FROM_PROPS, ANIMATION_TO_PROPS } from '../lib/animation';
 
-const seoTitle = 'Mark McDermott : Work history';
+const seoTitle = 'Work history';
 const seoDescription = "From digital agencies and IT consulting to building global SaaS platforms.";
 
 export default function Work() {

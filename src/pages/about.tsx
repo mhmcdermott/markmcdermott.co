@@ -16,7 +16,7 @@ import {
   SocialMedia,
 } from '../data/lifeApi';
 
-const seoTitle = `Mark McDermott : About me`;
+const seoTitle = `About me`;
 const seoDescription = `Hello, I'm Mark McDermott, CEO and Co-Founder of ScreenCloud. Based in London, UK`;
 
 export default function AboutMe() {

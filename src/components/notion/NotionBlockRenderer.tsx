@@ -138,6 +138,59 @@ export const NotionBlockRenderer = ({ block }: Props) => {
           {href}
         </a>
       );
+    case 'video':
+      if (value.type === 'external' && value.external.url) {
+        const videoUrl = value.external.url;
+        // Check if it's a YouTube URL
+        const youtubeMatch = videoUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s]+)/);
+        if (youtubeMatch) {
+          const videoId = youtubeMatch[1];
+          return (
+            <div className="relative aspect-video my-8">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full rounded-lg"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          );
+        }
+      }
+      return <div>Video: {value.external?.url || 'Unsupported video'}</div>;
+    case 'embed':
+      const embedUrl = value.url;
+      // Check if it's a YouTube URL
+      const youtubeEmbedMatch = embedUrl.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s]+)/);
+      if (youtubeEmbedMatch) {
+        const videoId = youtubeEmbedMatch[1];
+        return (
+          <div className="relative aspect-video my-8">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-lg"
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        );
+      }
+      // For other embeds, try to render in an iframe
+      return (
+        <div className="relative aspect-video my-8">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full rounded-lg"
+            src={embedUrl}
+            title="Embedded content"
+            frameBorder="0"
+            allowFullScreen
+          />
+        </div>
+      );
     default:
       return (
         <>❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})</>

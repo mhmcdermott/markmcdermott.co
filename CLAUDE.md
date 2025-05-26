@@ -31,10 +31,22 @@ Required environment variables (create `.env.local`):
 ## High-Level Architecture
 
 ### Content Management
-The site uses **Notion as a headless CMS** for blog posts/notes. The Notion database must have these properties:
+The site uses **Notion as a headless CMS** for blog posts/notes. The Notion database supports these properties:
+
+**Core Fields** (Original):
 - `id`, `created_time`, `last_edited_time`, `cover`
 - `hashtags` (multi-select), `title`, `description`, `slug`
 - `published` (checkbox), `publishedAt` (date), `inProgress` (checkbox)
+
+**SEO Fields** (Enhanced):
+- `seoTitle` (rich text) - SEO-optimized title for search engines
+- `metaDescription` (rich text) - Meta description for search results
+- `excerpt` (rich text) - Short snippet for social sharing
+
+**Content Metrics** (Enhanced):
+- `readingTime` (number) - Estimated reading time in minutes
+- `wordCount` (number) - Total word count of the post
+- `contentStatus` (select) - Draft/In Review/Ready to Publish/Published/Archived
 
 The `notesApi` (src/lib/notesApi.ts) handles all Notion interactions, including:
 - Fetching posts with pagination
