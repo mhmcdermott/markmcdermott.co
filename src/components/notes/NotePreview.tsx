@@ -32,7 +32,18 @@ export const NotePreview = ({ note, dense, showCoverImage = false }: Props) => {
       whileInView={ANIMATION_TO_PROPS}
       viewport={{ once: true }}
     >
-      <article className="md:grid md:grid-cols-4 md:items-baseline">
+      <article className="md:grid md:grid-cols-4 md:items-start md:gap-4">
+        {!dense && (
+          <time dateTime={note.publishedAt} className="hidden md:block md:col-span-1 text-sm text-zinc-400 dark:text-zinc-500">
+            <div className="flex flex-col">
+              <span>{formatDate(note.publishedAt)}</span>
+              {note.readingTime && (
+                <span className="text-sm text-zinc-400 dark:text-zinc-500">{note.readingTime} min read</span>
+              )}
+            </div>
+            {note.inProgress && <StaticBadge className="mt-2">Work in progress</StaticBadge>}
+          </time>
+        )}
         <Card className="md:col-span-3">
           {showCoverImage && note.coverImage && (
             <div className="relative z-10 w-full h-48 mb-4 overflow-hidden rounded-lg">
@@ -64,17 +75,6 @@ export const NotePreview = ({ note, dense, showCoverImage = false }: Props) => {
           <Card.Description>{note.description}</Card.Description>
           <Card.Cta>Read note</Card.Cta>
         </Card>
-        {!dense && (
-          <Card.Eyebrow as="time" dateTime={note.publishedAt} className="mt-1 hidden md:block">
-            <div className="flex flex-col">
-              <span>{formatDate(note.publishedAt)}</span>
-              {note.readingTime && (
-                <span className="text-sm text-zinc-400 dark:text-zinc-500">{note.readingTime} min read</span>
-              )}
-            </div>
-            {note.inProgress && <StaticBadge className="mt-2">Work in progress</StaticBadge>}
-          </Card.Eyebrow>
-        )}
       </article>
     </motion.div>
   );

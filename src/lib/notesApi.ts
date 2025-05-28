@@ -107,11 +107,40 @@ class NotesApi {
   async getNotes(sortOrder: 'asc' | 'desc' = 'desc', limit?: number) {
     const notes = await this.getDatabaseContent(this.databaseId);
 
+    if (!notes || !Array.isArray(notes)) {
+      console.error('getNotes: notes is not an array', notes);
+      return [];
+    }
+
     return notes
       .sort((a, b) => {
         return CompareFunctionLookup[sortOrder](new Date(a.publishedAt), new Date(b.publishedAt));
       })
       .slice(0, limit);
+  }
+
+  async getNotesWithPagination(
+    page: number = 1, 
+    limit: number = 10, 
+    sortOrder: 'asc' | 'desc' = 'desc'
+  ): Promise<{ notes: Note[]; totalCount: number; totalPages: number; currentPage: number }> {
+    const allNotes = await this.getDatabaseContent(this.databaseId);
+    const sortedNotes = allNotes.sort((a, b) => {
+      return CompareFunctionLookup[sortOrder](new Date(a.publishedAt), new Date(b.publishedAt));
+    });
+    
+    const totalCount = sortedNotes.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const notes = sortedNotes.slice(startIndex, endIndex);
+
+    return {
+      notes,
+      totalCount,
+      totalPages,
+      currentPage: page
+    };
   }
 
   async getNotesByTag(tag: string, sortOrder: 'asc' | 'desc' = 'desc', limit?: number) {
@@ -132,19 +161,20 @@ class NotesApi {
   }
 
   private getDatabaseContent = async (databaseId: string): Promise<Note[]> => {
-    const db = await this.notion.databases.query({ database_id: databaseId });
+    try {
+      const db = await this.notion.databases.query({ database_id: databaseId });
 
-    while (db.has_more && db.next_cursor) {
-      const { results, has_more, next_cursor } = await this.notion.databases.query({
-        database_id: databaseId,
-        start_cursor: db.next_cursor,
-      });
-      db.results = [...db.results, ...results];
-      db.has_more = has_more;
-      db.next_cursor = next_cursor;
-    }
+      while (db.has_more && db.next_cursor) {
+        const { results, has_more, next_cursor } = await this.notion.databases.query({
+          database_id: databaseId,
+          start_cursor: db.next_cursor,
+        });
+        db.results = [...db.results, ...results];
+        db.has_more = has_more;
+        db.next_cursor = next_cursor;
+      }
 
-    return db.results
+      return db.results
       .map((page) => {
         if (!isFullPage(page)) {
           throw new Error('Notion page is not a full page');
@@ -225,6 +255,10 @@ class NotesApi {
         // Only show posts with contentStatus = 'Published'
         return post.contentStatus === 'Published' || post.isPublished;
       });
+    } catch (error) {
+      console.error('Error fetching notes from Notion:', error);
+      return [];
+    }
   };
 
   private getPageContent = async (pageId: string) => {

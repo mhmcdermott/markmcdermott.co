@@ -6,7 +6,7 @@ type Props = PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>;
 export const Prose = ({ children, className }: Props) => {
   return (
     <div
-      className={clsx(className, 'md:prose-md xl:prose-lg prose prose-zinc w-full dark:prose-dark')}
+      className={clsx(className, 'prose prose-zinc w-full dark:prose-dark')}
     >
       {children}
     </div>

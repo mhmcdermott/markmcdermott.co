@@ -3,7 +3,7 @@ import { ArticleJsonLd, NextSeo } from 'next-seo';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
 
-import { XIcon } from '../../components/icons/XIcon';
+import { LinkedInIcon } from '../../components/icons/LinkedInIcon';
 import { NoteLayout } from '../../components/notes/NoteLayout';
 import { NotionBlockRenderer } from '../../components/notion/NotionBlockRenderer';
 import { Note as NoteType, notesApi } from '../../lib/notesApi';
@@ -58,7 +58,7 @@ export default function Note({
         meta={{ title, description, date: createdAt, readingTime, coverImage: note.coverImage }}
         previousPathname={previousPathname}
       >
-        <div className="pb-32">
+        <div className="pb-8">
           {noteContent.map((block) => (
             <NotionBlockRenderer key={block.id} block={block} />
           ))}
@@ -66,16 +66,15 @@ export default function Note({
           <hr />
 
           <a
-            className="group block text-xl font-semibold md:text-3xl no-underline"
-            href={`http://x.com/share?${new URLSearchParams({
-              text: title,
-              url,
-            }).toString()}`}
+            className="group block text-base font-semibold no-underline"
+            href="https://www.linkedin.com/in/mhmcdermott/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <h4 className="max-w-lg flex cursor-pointer flex-col duration-200 ease-in-out group-hover:text-primary group-hover:fill-primary fill-white text-wrap">
-              <XIcon className="my-6 h-10 w-10 transform transition-transform group-hover:-rotate-12 text-black dark:text-white group-hover:text-primary" />
-              Click here to share this article with your friends on X if you liked it.
-            </h4>
+            <div className="flex items-center gap-3 cursor-pointer duration-200 ease-in-out group-hover:text-primary">
+              <LinkedInIcon className="h-6 w-6 transform transition-transform group-hover:scale-110 text-primary" />
+              <span>Connect with me on LinkedIn</span>
+            </div>
           </a>
         </div>
       </NoteLayout>
