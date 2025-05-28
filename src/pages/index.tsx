@@ -58,12 +58,12 @@ export default function Home({ latestNotes }: Props) {
       </div>
       <Container className="mt-12">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-12 lg:gap-x-12">
-          <div className="flex flex-col gap-16 lg:col-span-7">
+          <div className="flex flex-col gap-16 lg:col-span-8">
             {(latestNotes || []).map((blogPost) => (
               <NotePreview key={blogPost.slug} note={blogPost} dense />
             ))}
           </div>
-          <div className="space-y-10 lg:col-span-5">
+          <div className="space-y-10 lg:col-span-4">
             <Resume />
           </div>
         </div>
