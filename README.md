@@ -58,10 +58,10 @@ Your Notion database needs these properties:
 - `title` (title) - Post title
 - `description` (text) - Short description for previews
 - `slug` (text) - URL path (e.g., "my-post-title")
-- `published` (checkbox) - Whether the post is published
 - `publishedAt` (date) - Publication date
 - `hashtags` (multi-select) - Tags for categorization
 - `cover` (files & media) - Optional cover image
+- `contentStatus` (select) - Options: Draft, In Review, Ready to Publish, Published, Archived
 
 **Enhanced Fields** (Recommended):
 - `seoTitle` (text) - SEO-optimized title for search engines
@@ -69,9 +69,9 @@ Your Notion database needs these properties:
 - `excerpt` (text) - Short snippet for social sharing
 - `readingTime` (number) - Estimated reading time in minutes
 - `wordCount` (number) - Total word count of the post
-- `contentStatus` (select) - Options: Draft, In Review, Ready to Publish, Published, Archived
+- `inProgress` (checkbox) - Optional flag to mark posts as work in progress
 
-**Note**: Posts will only be displayed if `contentStatus` is set to "Published" or `published` checkbox is checked.
+**Note**: Posts will only be displayed if `contentStatus` is set to "Published".
 
 ### Installation
 

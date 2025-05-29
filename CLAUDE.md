@@ -36,7 +36,8 @@ The site uses **Notion as a headless CMS** for blog posts/notes. The Notion data
 **Core Fields** (Original):
 - `id`, `created_time`, `last_edited_time`, `cover`
 - `hashtags` (multi-select), `title`, `description`, `slug`
-- `published` (checkbox), `publishedAt` (date), `inProgress` (checkbox)
+- `publishedAt` (date), `inProgress` (checkbox)
+- `contentStatus` (select) - Draft/In Review/Ready to Publish/Published/Archived
 
 **SEO Fields** (Enhanced):
 - `seoTitle` (rich text) - SEO-optimized title for search engines
@@ -46,7 +47,6 @@ The site uses **Notion as a headless CMS** for blog posts/notes. The Notion data
 **Content Metrics** (Enhanced):
 - `readingTime` (number) - Estimated reading time in minutes
 - `wordCount` (number) - Total word count of the post
-- `contentStatus` (select) - Draft/In Review/Ready to Publish/Published/Archived
 
 The `notesApi` (src/lib/notesApi.ts) handles all Notion interactions, including:
 - Fetching posts with pagination

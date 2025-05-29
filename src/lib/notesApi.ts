@@ -17,10 +17,9 @@ export type Note = {
   title: string;
   description: string;
   slug: string;
-  isPublished: boolean;
   publishedAt: string;
   inProgress: boolean;
-  // New fields from enhanced database
+  // Enhanced database fields
   seoTitle?: string;
   metaDescription?: string;
   excerpt?: string;
@@ -218,7 +217,6 @@ class NotesApi {
           slug: page.properties.slug && 'rich_text' in page.properties.slug 
             ? page.properties.slug.rich_text[0]?.plain_text || '' 
             : '',
-          isPublished: false, // Will be set based on contentStatus below
           publishedAt: page.properties.publishedAt && 'date' in page.properties.publishedAt 
             ? page.properties.publishedAt.date?.start || '' 
             : '',
@@ -245,15 +243,13 @@ class NotesApi {
         }
         if (page.properties.contentStatus && 'select' in page.properties.contentStatus && page.properties.contentStatus.select) {
           note.contentStatus = page.properties.contentStatus.select.name as Note['contentStatus'];
-          // Set isPublished based on contentStatus
-          note.isPublished = note.contentStatus === 'Published';
         }
 
         return note;
       })
       .filter((post) => {
         // Only show posts with contentStatus = 'Published'
-        return post.contentStatus === 'Published' || post.isPublished;
+        return post.contentStatus === 'Published';
       });
     } catch (error) {
       console.error('Error fetching notes from Notion:', error);
