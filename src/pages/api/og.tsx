@@ -4,7 +4,7 @@ import { NextRequest } from 'next/server';
 import { Name } from '../../data/lifeApi';
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 };
 
 const font = fetch(new URL('../../../public/assets/font/Inter.ttf', import.meta.url)).then((res) =>
