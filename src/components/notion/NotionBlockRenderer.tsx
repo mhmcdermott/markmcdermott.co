@@ -2,7 +2,9 @@ import { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoin
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
+import Prism from '../../lib/prism';
 import { Quote } from '../Quote';
 
 //TODO: improve types here, cleanup the code
@@ -13,6 +15,10 @@ type Props = {
 export const NotionBlockRenderer = ({ block }: Props) => {
   const { type, id } = block;
   const value = block[type];
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [block]);
 
   switch (type) {
     case 'paragraph':

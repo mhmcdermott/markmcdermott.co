@@ -16,10 +16,12 @@ My personal website built with Next.js, TypeScript, and Notion as a headless CMS
 
 ## Features
 
-- 📝 Blog powered by Notion CMS
+- 📝 Blog powered by Notion CMS with enhanced fields
+- 📄 Pagination support (10 posts per page)
+- 🏷️ Tag filtering with sticky sidebar navigation
 - 🌓 Dark/light mode
 - 📱 Fully responsive
-- 🚀 Fast page loads with static generation
+- 🚀 Fast page loads with SSR for dynamic content
 - 🔍 SEO optimized with comprehensive meta tags
 - 📊 Analytics with Vercel
 - 🖼️ Dynamic OG images with fallback support
@@ -27,6 +29,7 @@ My personal website built with Next.js, TypeScript, and Notion as a headless CMS
 - 📡 RSS feed
 - 🎨 Visual category icons for media sections
 - 📧 Contact form with email delivery via Resend
+- 💼 LinkedIn integration for networking
 
 ## Running Locally
 
@@ -50,14 +53,25 @@ RESEND_API_KEY=your_resend_api_key # For contact form emails
 ### Notion Database Setup
 
 Your Notion database needs these properties:
-- `title` (title)
-- `description` (text)
-- `slug` (text) - for URL paths
-- `published` (checkbox)
-- `publishedAt` (date)
-- `hashtags` (multi-select)
-- `inProgress` (checkbox)
-- `cover` (files & media) - optional
+
+**Core Fields** (Required):
+- `title` (title) - Post title
+- `description` (text) - Short description for previews
+- `slug` (text) - URL path (e.g., "my-post-title")
+- `published` (checkbox) - Whether the post is published
+- `publishedAt` (date) - Publication date
+- `hashtags` (multi-select) - Tags for categorization
+- `cover` (files & media) - Optional cover image
+
+**Enhanced Fields** (Recommended):
+- `seoTitle` (text) - SEO-optimized title for search engines
+- `metaDescription` (text) - Meta description for search results
+- `excerpt` (text) - Short snippet for social sharing
+- `readingTime` (number) - Estimated reading time in minutes
+- `wordCount` (number) - Total word count of the post
+- `contentStatus` (select) - Options: Draft, In Review, Ready to Publish, Published, Archived
+
+**Note**: Posts will only be displayed if `contentStatus` is set to "Published" or `published` checkbox is checked.
 
 ### Installation
 
@@ -90,6 +104,17 @@ npm run typecheck    # Run TypeScript type checking
 npm run format       # Format code with Prettier
 ```
 
+## Recent Updates
+
+### Blog/Notes Enhancements (2025)
+- **Pagination**: Notes page now shows 10 posts per page with navigation controls
+- **Improved Layout**: Tags moved to sticky right sidebar on desktop for better navigation
+- **Better Typography**: Optimized font sizes for improved readability
+- **Enhanced SEO**: Support for custom SEO fields (seoTitle, metaDescription)
+- **Reading Time**: Display estimated reading time for each post
+- **LinkedIn Integration**: Replaced social sharing with LinkedIn connection CTA
+- **Error Handling**: Improved resilience with Notion API error handling
+
 ## Project Structure
 
 ```
@@ -97,12 +122,14 @@ npm run format       # Format code with Prettier
 │   └── og-default.svg # Fallback OG image
 ├── src/
 │   ├── components/   # React components
+│   │   └── Pagination.tsx # New pagination component
 │   ├── data/         # Static data (bio, work history, etc.)
 │   ├── images/       # Image assets
 │   │   ├── life/     # Personal photos
 │   │   ├── logos/    # Company logos
 │   │   └── media/    # Media category icons
 │   ├── lib/          # Utility functions and APIs
+│   │   └── notesApi.ts # Enhanced with pagination support
 │   ├── pages/        # Next.js pages
 │   └── styles/       # Global styles
 ├── .github/          # GitHub Actions workflows
