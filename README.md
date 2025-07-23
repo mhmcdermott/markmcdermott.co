@@ -133,7 +133,9 @@ npm run format       # Format code with Prettier
 │   ├── pages/        # Next.js pages
 │   └── styles/       # Global styles
 ├── .github/          # GitHub Actions workflows
-└── CLAUDE.md         # AI assistant context
+├── CLAUDE.md         # AI assistant context
+├── MCP_SETUP.md      # MCP server setup guide
+└── CONTACT_FORM_SETUP.md # Contact form setup guide
 ```
 
 ## Deployment
