@@ -26,6 +26,14 @@ export default async function handler(
     });
   }
 
+  // Validate field lengths to prevent abuse
+  if (name.length > 100 || email.length > 254 || message.length > 5000) {
+    return res.status(400).json({ 
+      message: 'Input too long',
+      error: 'Please keep your inputs within reasonable limits' 
+    });
+  }
+
   // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
@@ -35,12 +43,26 @@ export default async function handler(
     });
   }
 
+  // Sanitize inputs to prevent XSS
+  const sanitizeHtml = (str: string) => {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;')
+      .replace(/\//g, '&#x2F;');
+  };
+
+  const sanitizedName = sanitizeHtml(name);
+  const sanitizedMessage = sanitizeHtml(message);
+
   try {
-    // Log the submission
+    // Log the submission (without sensitive data)
     console.log('Contact form submission:', {
-      name,
-      email,
-      message,
+      name: sanitizedName,
+      emailDomain: email.split('@')[1], // Only log domain for privacy
+      messageLength: message.length,
       timestamp: new Date().toISOString()
     });
 
@@ -48,10 +70,10 @@ export default async function handler(
     const data = await resend.emails.send({
       from: 'Contact Form <noreply@contact.markmcdermott.me.uk>',
       to: ['mark@markmcdermott.me.uk'],
-      subject: `Contact form submission from ${name}`,
+      subject: `Contact form submission from ${sanitizedName}`,
       text: `You have a new contact form submission:
 
-Name: ${name}
+Name: ${sanitizedName}
 Email: ${email}
 
 Message:
@@ -61,10 +83,10 @@ ${message}
 Sent from markmcdermott.co contact form`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Name:</strong> ${sanitizedName}</p>
+        <p><strong>Email:</strong> ${sanitizeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${sanitizedMessage.replace(/\n/g, '<br>')}</p>
         <hr>
         <p style="color: #666; font-size: 12px;">Sent from markmcdermott.co contact form</p>
       `,
