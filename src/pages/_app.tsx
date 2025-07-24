@@ -7,6 +7,7 @@ import { DefaultSeo } from 'next-seo';
 
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
+import { StructuredData, personSchema } from '../components/StructuredData';
 import '../styles/index.css';
 import '../styles/prism.css';
 
@@ -55,8 +56,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
           ],
         }}
         twitter={{
-          handle: '@markymcd',
-          site: '@markymcd',
+          handle: '@mr_mcd',
+          site: '@mr_mcd',
           cardType: 'summary_large_image',
         }}
         additionalMetaTags={[
@@ -70,6 +71,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           },
         ]}
       />
+      <StructuredData data={personSchema} />
       <ThemeProvider attribute="class">
         <div>
           <div className="fixed inset-0 flex justify-center sm:px-8">

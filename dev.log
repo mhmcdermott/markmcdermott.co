@@ -30,3 +30,40 @@ Warning: useLayoutEffect does nothing on the server, because its effect cannot b
     at div
     at Body (webpack://next/dist/src/server/render.tsx:1271:19)
  GET / 200 in 2899ms
+ ✓ Compiled in 3.1s (770 modules)
+ ✓ Compiled in 581ms (541 modules)
+ ✓ Compiled in 554ms (770 modules)
+ ✓ Compiled in 415ms (774 modules)
+ ✓ Compiled in 329ms (774 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1100ms (1240 modules)
+Warning: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer's output format. This will lead to a mismatch between the initial, non-hydrated UI and the intended UI. To avoid this, useLayoutEffect should only be used in components that render exclusively on the client. See https://reactjs.org/link/uselayouteffect-ssr for common fixes.
+    at Header (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/src/components/Header.tsx:17:29)
+    at div
+    at div
+    at m (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/node_modules/next-themes/dist/index.js:1:310)
+    at exports.ThemeProvider (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/node_modules/next-themes/dist/index.js:1:3611)
+    at App (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/src/pages/_app.tsx:24:31)
+    at StyleRegistry (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/node_modules/styled-jsx/dist/index/index.js:449:36)
+    at PathnameContextProviderAdapter (webpack://next/dist/src/shared/lib/router/adapters.tsx:70:3)
+    at AppContainer (webpack://next/dist/src/server/render.tsx:757:27)
+    at AppContainerWithIsomorphicFiberStructure (webpack://next/dist/src/server/render.tsx:809:11)
+    at div
+    at Body (webpack://next/dist/src/server/render.tsx:1271:19)
+ GET / 200 in 2672ms
+ ✓ Compiled in 456ms (773 modules)
+ ✓ Compiled / in 85ms (1239 modules)
+Warning: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer's output format. This will lead to a mismatch between the initial, non-hydrated UI and the intended UI. To avoid this, useLayoutEffect should only be used in components that render exclusively on the client. See https://reactjs.org/link/uselayouteffect-ssr for common fixes.
+    at Header (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/src/components/Header.tsx:17:29)
+    at div
+    at div
+    at m (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/node_modules/next-themes/dist/index.js:1:310)
+    at exports.ThemeProvider (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/node_modules/next-themes/dist/index.js:1:3611)
+    at App (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/src/pages/_app.tsx:24:31)
+    at StyleRegistry (/Users/markmcdermott/Sites/markmcdermott/v3/markmcdermott.co/node_modules/styled-jsx/dist/index/index.js:449:36)
+    at PathnameContextProviderAdapter (webpack://next/dist/src/shared/lib/router/adapters.tsx:70:3)
+    at AppContainer (webpack://next/dist/src/server/render.tsx:757:27)
+    at AppContainerWithIsomorphicFiberStructure (webpack://next/dist/src/server/render.tsx:809:11)
+    at div
+    at Body (webpack://next/dist/src/server/render.tsx:1271:19)
+ GET / 200 in 807ms
