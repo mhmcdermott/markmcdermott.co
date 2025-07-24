@@ -67,3 +67,4 @@ Warning: useLayoutEffect does nothing on the server, because its effect cannot b
     at div
     at Body (webpack://next/dist/src/server/render.tsx:1271:19)
  GET / 200 in 807ms
+ ✓ Compiled in 368ms (773 modules)

@@ -56,7 +56,7 @@ This document describes the schema.org/Person structured data implementation for
 
 To update the schema data, edit the `personSchema` object in `src/components/StructuredData.tsx`:
 
-1. **Profile Image**: Replace the dynamic OG image URL with your actual headshot URL when available
+1. **Profile Image**: Currently using `/public/images/mark-mcdermott-headshot.jpg`
 2. **Social Links**: Update the `sameAs` array with your social media profiles
 3. **Skills**: Modify the `knowsAbout` array with your expertise areas
 4. **Awards/Achievements**: Update the `award` array with your accomplishments

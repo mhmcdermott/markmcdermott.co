@@ -28,7 +28,7 @@ export const personSchema = {
     url: 'https://screencloud.com',
   },
   url: 'https://www.markmcdermott.co',
-  image: 'https://www.markmcdermott.co/api/og?title=Mark%20McDermott&description=CEO%20%26%20Co-Founder%20of%20ScreenCloud', // Dynamic OG image as placeholder
+  image: 'https://www.markmcdermott.co/images/mark-mcdermott-headshot.jpg',
   description:
     'CEO & Co-Founder of ScreenCloud. Building digital products that make workplace communication better.',
   knowsAbout: [
