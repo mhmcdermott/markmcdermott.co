@@ -51,3 +51,8 @@ claude_desktop_config.json
 fix-claude-desktop-config.js
 update-mcp-auth*.js
 mcp-auth-template.json
+
+# Task Master
+.taskmaster/tasks/
+.taskmaster/sessions/
+.taskmaster/.cache/

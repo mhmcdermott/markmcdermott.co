@@ -1,0 +1,40 @@
+# Product Requirements Document: markmcdermott.co Personal Website
+
+## Project Overview
+A modern, performant personal website for Mark McDermott showcasing professional work, blog posts, media appearances, and contact information. Built with Next.js and TypeScript, using Notion as a headless CMS.
+
+## Core Features
+
+### 1. Homepage
+- Professional introduction and bio
+- Recent blog posts/notes
+- Photo gallery showcasing travel and personal interests
+- Work history summary
+- Social media links
+
+### 2. Blog/Notes System
+- Notion-powered content management
+- SEO-optimized blog posts with reading time
+- Tag-based categorization
+- RSS feed generation
+- Dynamic OG images for social sharing
+
+### 3. Professional Sections
+- About page with extended bio
+- Work history with company details
+- Media page featuring podcasts, conferences, and videos
+- Contact form with email integration
+
+### 4. Technical Infrastructure
+- Next.js 15+ with TypeScript
+- Tailwind CSS for styling
+- Vercel deployment
+- Schema.org structured data
+- MCP (Model Context Protocol) integration for enhanced development
+
+## Development Standards
+- Clean, maintainable code
+- Comprehensive documentation
+- Security best practices
+- Performance optimization
+- Accessibility compliance

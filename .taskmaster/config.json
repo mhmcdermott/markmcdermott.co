@@ -1,0 +1,23 @@
+{
+  "project": {
+    "name": "markmcdermott.co",
+    "description": "Personal website with blog, portfolio, and professional information",
+    "type": "web",
+    "stack": ["nextjs", "typescript", "tailwind", "notion-api"]
+  },
+  "ai": {
+    "provider": "claude-code",
+    "model": "claude-3-opus"
+  },
+  "tasks": {
+    "autoGenerate": true,
+    "categories": [
+      "feature",
+      "bug",
+      "enhancement",
+      "documentation",
+      "testing",
+      "deployment"
+    ]
+  }
+}
