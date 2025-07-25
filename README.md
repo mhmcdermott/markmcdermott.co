@@ -134,7 +134,7 @@ npm run format       # Format code with Prettier
 │   └── styles/       # Global styles
 ├── .github/          # GitHub Actions workflows
 ├── CLAUDE.md         # AI assistant context
-├── MCP_SETUP.md      # MCP server setup guide
+├── MCP_SETUP.md      # Complete MCP setup guide (10 servers)
 └── CONTACT_FORM_SETUP.md # Contact form setup guide
 ```
 
