@@ -13,6 +13,8 @@ const clamp = (number: number, a: number, b: number) => {
   return Math.min(Math.max(number, min), max);
 };
 
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 export const Header = () => {
   let isHomePage = useRouter().pathname === '/';
 
@@ -20,7 +22,7 @@ export const Header = () => {
   let avatarRef = useRef<HTMLDivElement | null>(null);
   let isInitial = useRef(true);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let downDelay = avatarRef.current?.offsetTop ?? 0;
     let upDelay = 64;
 
