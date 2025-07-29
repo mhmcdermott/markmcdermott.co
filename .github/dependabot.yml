@@ -1,31 +1,71 @@
+# Dependabot configuration for Personal Website
+# Conservative approach based on Tailwind CSS v4 beta lessons learned
+
 version: 2
 updates:
-  # Enable version updates for npm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "03:00"
-    open-pull-requests-limit: 10
-    reviewers:
-      - "mhmcdermott"
-    commit-message:
-      prefix: "chore"
-      include: "scope"
-    labels:
-      - "dependencies"
-      - "automated"
-    # Ignore critical dependencies that are pinned
+      time: "09:00"
+      timezone: "Europe/London"
+    
+    # Conservative approach: ignore major/minor updates for critical dependencies
     ignore:
+      # React ecosystem - critical for personal website
       - dependency-name: "react"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
       - dependency-name: "react-dom"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      
+      # Tailwind CSS - NEVER auto-update to v4 beta again!
       - dependency-name: "tailwindcss"
-        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+        update-types: ["version-update:semver-major"]
+      
+      # Next.js - test major updates manually
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      
+      # TypeScript - major updates can break compatibility
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     
-  # Enable security updates
+    # Personal website specific groupings
+    groups:
+      # Group blog-related updates
+      blog-functionality:
+        patterns:
+          - "*notion*"
+          - "@notionhq/*"
+      
+      # Group contact form updates
+      contact-form:
+        patterns:
+          - "resend"
+          - "*mail*"
+      
+      # Group theme/UI updates
+      ui-theming:
+        patterns:
+          - "next-themes"
+          - "*theme*"
+    
+    labels:
+      - "dependencies"
+      - "personal-website"
+    
+    reviewers:
+      - "mhmcdermott"
+    
+    open-pull-requests-limit: 3
+    
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+
+  # Enable security updates - higher priority
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -37,6 +77,7 @@ updates:
       prefix: "security"
     labels:
       - "security"
+      - "personal-website"
       - "automated"
     
   # Keep GitHub Actions up to date

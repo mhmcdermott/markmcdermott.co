@@ -96,29 +96,58 @@ All personal/professional data is centralized in `src/data/lifeApi.tsx`:
 - All external links open in new tabs via ExternalLink component
 - Blog redirects: `/blog/*` → `/notes/*` (permanent)
 
-## Dependency Management
+## Dependency Management (CRITICAL - TAILWIND CSS v4 PROTECTION)
 
-This project uses a conservative dependency management strategy to prevent breaking changes. See `DEPENDENCY_STRATEGY.md` for full details.
+### Conservative Pinning Strategy
+```json
+{
+  "react": "19.1.1",
+  "react-dom": "19.1.1",
+  "tailwindcss": "3.4.17"
+}
+```
 
-### Critical Dependencies (Pinned)
-These dependencies are pinned to exact versions (no `^`) to prevent automatic updates:
-- `react`: 19.1.1
-- `react-dom`: 19.1.1  
-- `tailwindcss`: 3.4.17
+### Known Problematic Dependencies - NEVER FORGET
+- **Tailwind CSS v4**: BROKE THE ENTIRE BUILD IN JULY 2025
+  - **Symptoms**: Module resolution errors, build failures
+  - **Cause**: Beta version incompatible with Next.js
+  - **Solution**: Emergency rollback to v3.4.17
+  - **Prevention**: This dependency strategy was created specifically for this!
 
-### Known Issues
-- **Tailwind CSS v4**: Currently beta with breaking changes. Stay on v3.x
-- **React 19**: Some ecosystem packages may have compatibility issues
-- **Next.js**: Major updates can break middleware/API routes
+### Personal Website Specific Considerations
+- **Notion API**: Blog functionality depends on stable client
+- **Resend**: Contact form email delivery
+- **Next-themes**: Dark/light mode toggle
+- **SEO packages**: Meta tag generation
 
-### Before Any Dependency Updates
-1. Check `DEPENDENCY_STRATEGY.md` for known problematic packages
-2. Test in a separate branch first
-3. Always run the full test suite:
+### Build Troubleshooting (Tailwind CSS v4 Emergency Procedures)
+If you encounter build errors:
+1. **Check for Tailwind CSS v4 first**: `npm list tailwindcss`
+2. **Clear Next.js cache**: `rm -rf .next`
+3. **Clear node_modules**: `rm -rf node_modules && npm install`
+4. **Emergency rollback if v4 detected**:
    ```bash
-   npm run build
-   npm run typecheck  
-   npm run lint
-   npm run dev # Test all pages
+   git checkout HEAD~1 -- package.json package-lock.json
+   rm -rf .next node_modules
+   npm install
    ```
-4. Clear `.next` cache if encountering module resolution errors
+5. **Test core features**: blog, contact form, theme toggle
+
+### Personal Website Testing After Dependency Updates
+Always test these core features:
+- [ ] Homepage loads correctly
+- [ ] Blog posts display (if using Notion CMS)
+- [ ] Contact form submits successfully
+- [ ] Dark/light theme toggle works
+- [ ] All navigation functions
+- [ ] SEO meta tags render
+- [ ] Lighthouse scores remain 90+
+
+### Emergency Commands (Saved the day in July 2025!)
+```bash
+# The exact commands that fixed the Tailwind CSS v4 crisis:
+rm -rf .next                              # Clear Next.js cache
+rm -rf node_modules && npm install        # Fresh install
+npm run build                             # Test build
+npm list tailwindcss                      # Check version
+```
