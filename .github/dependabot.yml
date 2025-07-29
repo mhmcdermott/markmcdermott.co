@@ -16,6 +16,14 @@ updates:
     labels:
       - "dependencies"
       - "automated"
+    # Ignore critical dependencies that are pinned
+    ignore:
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
     
   # Enable security updates
   - package-ecosystem: "npm"

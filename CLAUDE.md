@@ -95,3 +95,30 @@ All personal/professional data is centralized in `src/data/lifeApi.tsx`:
 - Framer Motion for page transitions and animations
 - All external links open in new tabs via ExternalLink component
 - Blog redirects: `/blog/*` → `/notes/*` (permanent)
+
+## Dependency Management
+
+This project uses a conservative dependency management strategy to prevent breaking changes. See `DEPENDENCY_STRATEGY.md` for full details.
+
+### Critical Dependencies (Pinned)
+These dependencies are pinned to exact versions (no `^`) to prevent automatic updates:
+- `react`: 19.1.1
+- `react-dom`: 19.1.1  
+- `tailwindcss`: 3.4.17
+
+### Known Issues
+- **Tailwind CSS v4**: Currently beta with breaking changes. Stay on v3.x
+- **React 19**: Some ecosystem packages may have compatibility issues
+- **Next.js**: Major updates can break middleware/API routes
+
+### Before Any Dependency Updates
+1. Check `DEPENDENCY_STRATEGY.md` for known problematic packages
+2. Test in a separate branch first
+3. Always run the full test suite:
+   ```bash
+   npm run build
+   npm run typecheck  
+   npm run lint
+   npm run dev # Test all pages
+   ```
+4. Clear `.next` cache if encountering module resolution errors

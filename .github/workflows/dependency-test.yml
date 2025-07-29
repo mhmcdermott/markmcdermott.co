@@ -1,0 +1,75 @@
+name: Dependency Update Testing
+
+on:
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+    # Only run on Dependabot PRs
+    branches: [master, main]
+
+jobs:
+  dependency-test:
+    name: Test Dependency Updates
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
+          
+      - name: Check for critical dependency changes
+        run: |
+          echo "Checking for changes to pinned dependencies..."
+          if git diff HEAD~1 package.json | grep -E '"(react|react-dom|tailwindcss)".*[0-9]'; then
+            echo "⚠️ Critical dependency change detected!"
+            echo "This requires manual review per DEPENDENCY_STRATEGY.md"
+            exit 1
+          fi
+          
+      - name: Run comprehensive test suite
+        run: |
+          npm run typecheck
+          npm run lint
+          npm run build
+        env:
+          NEXT_PUBLIC_URL: ${{ secrets.NEXT_PUBLIC_URL }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          
+      - name: Test development server startup
+        run: |
+          timeout 30s npm run dev &
+          sleep 10
+          curl -f http://localhost:3000 || exit 1
+          pkill -f "next"
+        env:
+          NEXT_PUBLIC_URL: ${{ secrets.NEXT_PUBLIC_URL }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          
+      - name: Check bundle size impact
+        run: |
+          npm run build
+          du -sh .next/static/ > bundle-size.txt
+          echo "Bundle size: $(cat bundle-size.txt)"
+          
+      - name: Auto-approve safe updates
+        if: success()
+        run: |
+          echo "All tests passed - this dependency update appears safe"
+          # Auto-approve patch updates only
+          if [[ "${{ github.event.pull_request.title }}" =~ "bump.*from.*to.*\.[0-9]+$" ]]; then
+            echo "Patch update detected - safe to auto-approve"
+          fi
