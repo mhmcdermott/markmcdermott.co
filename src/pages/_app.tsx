@@ -12,7 +12,7 @@ import '../styles/index.css';
 import '../styles/prism.css';
 
 function usePrevious(value: string) {
-  let ref = useRef<string>();
+  let ref = useRef<string | undefined>(undefined);
 
   useEffect(() => {
     ref.current = value;

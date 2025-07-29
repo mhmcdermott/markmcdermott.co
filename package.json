@@ -11,9 +11,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.2",
+    "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^2.0.18",
-    "@notionhq/client": "^2.2.3",
+    "@notionhq/client": "^4.0.1",
+    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.7",
     "@types/prismjs": "^1.26.0",
     "@vercel/analytics": "^1.0.2",
@@ -21,7 +22,7 @@
     "clsx": "^2.0.0",
     "date-fns": "2.30.0",
     "focus-visible": "^5.2.0",
-    "framer-motion": "^10.16.4",
+    "framer-motion": "^12.23.11",
     "next": "^15.3.2",
     "next-seo": "^6.8.0",
     "next-themes": "^0.2.0",
@@ -29,17 +30,17 @@
     "playwright": "^1.54.1",
     "postcss-focus-visible": "^9.0.0",
     "prismjs": "^1.29.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "resend": "^4.5.1",
     "rss": "^1.2.2",
     "sharp": "^0.34.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@types/node": "^20.6.5",
-    "@types/react": "^18.0.10",
-    "@types/react-dom": "^18.0.5",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "@types/rss": "^0.0.30",
     "autoprefixer": "^10.4.7",
     "eslint": "8.50.0",
@@ -48,7 +49,7 @@
     "postcss": "^8.4.14",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
-    "tailwindcss": "^3.3.2",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.2.2"
   },
   "license": "MIT"

@@ -215,7 +215,7 @@ const NotionText = ({ textItems }: { textItems: TextRichTextItemResponse[] }) =>
         const {
           annotations: { bold, code, color, italic, strikethrough, underline },
           text,
-        } = textItem;
+        } = textItem as any;
         return (
           <span
             key={text.content}
