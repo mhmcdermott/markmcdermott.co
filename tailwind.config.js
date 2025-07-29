@@ -1,14 +1,17 @@
-const { spacing, fontFamily } = require('tailwindcss/defaultTheme');
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{tsx,jsx,ts,js}'],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}', 
+    './src/components/**/*.{js,ts,jsx,tsx}',
+  ],
   plugins: [require('@tailwindcss/typography')],
   darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...fontFamily.sans],
-        mono: fontFamily.mono,
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
       },
       fontSize: {
         xs: ['0.8125rem', { lineHeight: '1.5rem' }],
@@ -42,7 +45,7 @@ module.exports = {
               code: { color: theme('colors.blue.400') },
             },
             'h2,h3,h4': {
-              'scroll-margin-top': spacing[32],
+              'scroll-margin-top': theme('spacing.32'),
             },
             thead: {
               borderBottomColor: theme('colors.gray.200'),
@@ -68,7 +71,7 @@ module.exports = {
             },
             'h2,h3,h4': {
               color: theme('colors.gray.100'),
-              'scroll-margin-top': spacing[32],
+              'scroll-margin-top': theme('spacing.32'),
             },
             hr: { borderColor: theme('colors.gray.700') },
             ol: {
